@@ -9,14 +9,13 @@ using UnityEngine.SceneManagement;
 public class GetFolder : MonoBehaviour
 {
     public List<Mesh> models = new List<Mesh>();
-    int iterator;
+    int iterator; 
     public GameObject currentModel;
-    
-    // Start is called before the first frame update
+
+    //load models from resources
     void Start()
     {
         var temp = Resources.LoadAll("Input", typeof(Mesh)).Cast<Mesh>();
-        //currentModel = models[0].GetComponent<Mesh>();
         foreach(var loaded in temp)
         {
             models.Add(loaded);
@@ -25,6 +24,7 @@ public class GetFolder : MonoBehaviour
         SetModel(iterator);
     }
 
+    //next model
     public void Forward()
     {
         iterator++;
@@ -33,6 +33,7 @@ public class GetFolder : MonoBehaviour
         SetModel(iterator);
     }
 
+    //previous model
     public void Back()
     {
         iterator--;
@@ -40,7 +41,7 @@ public class GetFolder : MonoBehaviour
             iterator = models.Count - 1;
         SetModel(iterator);
     }
-
+    
     public void SetModel(int i)
     {
         currentModel.GetComponent<MeshFilter>().sharedMesh = models[i];
