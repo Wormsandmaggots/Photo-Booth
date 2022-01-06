@@ -44,5 +44,7 @@ public class GetFolder : MonoBehaviour
     public void SetModel(int i)
     {
         currentModel.GetComponent<MeshFilter>().sharedMesh = models[i];
+        Destroy(currentModel.GetComponent<Collider>());
+        currentModel.AddComponent<BoxCollider>();
     }
 }
